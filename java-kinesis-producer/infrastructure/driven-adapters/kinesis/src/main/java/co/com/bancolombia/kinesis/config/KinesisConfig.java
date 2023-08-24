@@ -11,9 +11,9 @@ public class KinesisConfig {
     @Bean
     public KinesisProducer kinesisProducer() {
         KinesisProducerConfiguration config = new KinesisProducerConfiguration()
-                .setRecordMaxBufferedTime(3000)
-                .setMaxConnections(5)
-                .setRequestTimeout(60000)
+                //.setRecordMaxBufferedTime(3000)
+                //.setMaxConnections(5)
+                //.setRequestTimeout(60000)
                 .setRegion("us-east-1");
 
         return new KinesisProducer(config);
