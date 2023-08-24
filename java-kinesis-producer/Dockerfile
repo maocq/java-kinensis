@@ -1,11 +1,12 @@
-#FROM ibm-semeru-runtimes:open-17.0.7_7-jre-jammy
-#WORKDIR /app
-#COPY . .
-#RUN ./gradlew bootJar
+FROM gradle:jdk17-alpine
+WORKDIR /app
+COPY . .
+RUN gradle bootJar
+
 
 FROM ibm-semeru-runtimes:open-17.0.7_7-jre-jammy
 WORKDIR /app
-COPY JavaKinesis.jar app.jar
+COPY --from=0 /app/applications/app-service/build/libs/JavaKinesis.jar /app/app.jar
 
 ENV JAVA_OPTS="-XX:+UseContainerSupport"
 ENTRYPOINT ["sh","-c","java $JAVA_OPTS -jar app.jar"]

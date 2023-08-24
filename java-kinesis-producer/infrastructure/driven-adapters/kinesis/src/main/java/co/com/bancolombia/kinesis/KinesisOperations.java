@@ -16,6 +16,7 @@ import reactor.core.publisher.MonoSink;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -49,7 +50,7 @@ public class KinesisOperations implements LogGateway {
 
             @Override
             public void onSuccess(UserRecordResult result) {
-                    monoSink.success(result);
+                monoSink.success(result);
             }
         };
     }
